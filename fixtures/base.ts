@@ -4,9 +4,15 @@ import { BookingClient } from '../api/bookingClient';
 const user = process.env.API_USER ?? 'admin';
 const pass = process.env.API_PASS ?? 'password123'; // public demo account
 
+type BookingContext = {
+    token: string;
+    trackID: (id: number) => void;
+};
+
 type Fixtures = {
     bookingClient: BookingClient;
     authToken: string;
+    bookingContext: BookingContext;
     trackBooking: (id: number) => void;
 };
 
@@ -19,7 +25,20 @@ export const test = base.extend<Fixtures>({
         const res = await bookingClient.getToken(user, pass);
         const { token } = await res.json();
         await use(token);
+    },
 
+    bookingContext: async ({ bookingClient, authToken }, use) => {
+        const trackedIds: number[] = [];
+        const context: BookingContext = {
+            token: authToken,
+            trackID: (id: number) => trackedIds.push(id),
+        };
+
+        await use(context);
+
+        for (const id of trackedIds) {
+            await bookingClient.deleteBooking(id);
+        }
     },
 
     // Auto-cleanup: delete every tracked booking after the test.

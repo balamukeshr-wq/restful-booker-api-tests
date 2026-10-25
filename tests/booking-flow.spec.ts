@@ -1,5 +1,5 @@
-import { test } from '../fixtures/booking-fixture';
-import { expect } from "@playwright/test"
+import { test, expect } from '../fixtures/base';
+
 test('As a travel agent, I can manage a customer booking lifecycle from creation to cancellation', async ({ request, bookingContext }) => {
     let activeId: number;
 

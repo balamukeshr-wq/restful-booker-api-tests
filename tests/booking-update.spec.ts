@@ -1,4 +1,4 @@
-import { test } from '../fixtures/booking-fixture';
+import { test } from '../fixtures/base';
 import { expect } from '@playwright/test';
 
 test.describe('Booking Update Operations', () => {

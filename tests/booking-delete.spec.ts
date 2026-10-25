@@ -1,5 +1,5 @@
-import { test } from '../fixtures/booking-fixture';
-import { expect } from '@playwright/test';
+import { test, expect } from '../fixtures/base';
+
 test('DELETE drops the record and leaves a 404 footprint', async ({ request, bookingContext }) => {
     // 1. Create a transient booking
     const createResponse = await request.post('/booking', {
