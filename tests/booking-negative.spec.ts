@@ -10,6 +10,19 @@ test.describe('Negative cases', () => {
         expect(res.status()).toBe(403);
     });
 
+    test('PUT with an invalid token is rejected', { tag: '@regression' }, async ({ request, bookingClient, trackBooking }) => {
+        const { bookingid } = await (await bookingClient.createBooking(buildBooking())).json();
+        trackBooking(bookingid);
+
+        const res = await request.put(`/booking/${bookingid}`, {
+            headers: { Cookie: 'token=invalid-token-123' },
+            data: buildBooking()
+        });
+
+        expect(res.status()).toBe(403);
+    });
+
+
     test('DELETE without a token is rejected and the booking survives', { tag: '@regression' }, async ({ request, bookingClient, trackBooking }) => {
         const { bookingid } = await (await bookingClient.createBooking(buildBooking())).json();
         trackBooking(bookingid);
@@ -26,5 +39,13 @@ test.describe('Negative cases', () => {
         const { firstname, ...incomplete } = buildBooking();
         const res = await request.post('/booking', { data: incomplete });
         expect(res.status()).toBe(500); // replace with what Postman showed
+    });
+    test('DELETE with an invalid token is rejected', { tag: '@regression' }, async ({ request, bookingClient, trackBooking }) => {
+        const { bookingid } = await (await bookingClient.createBooking(buildBooking())).json();
+        trackBooking(bookingid);
+        const res = await request.delete(`/booking/${bookingid}`, {
+            headers: { Cookie: 'token=invalid-token' },
+        });
+        expect(res.status()).toBe(403); // confirm in Postman first
     });
 });

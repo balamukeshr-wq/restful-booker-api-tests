@@ -1,7 +1,7 @@
 import { test, expect } from '../fixtures/base';
 import { buildBooking } from '../data/bookingData';
 
-test.describe('Read Booking Integration Suite', () => {
+test.describe('Read Booking ', () => {
     const createdIds: number[] = [];
 
     test.afterEach(async ({ bookingClient}) => {
@@ -11,7 +11,7 @@ test.describe('Read Booking Integration Suite', () => {
         createdIds.length = 0;
     });
 
-    test('GET /booking/{id} should return exact matched field profiles', { tag: '@smoke' }, async ({ bookingClient }) => {
+    test('GET /booking/{id} returns the booking created', { tag: '@smoke' }, async ({ bookingClient }) => {
         const payload = buildBooking();
 
         // 1. Setup - Create a fresh record isolated to this test

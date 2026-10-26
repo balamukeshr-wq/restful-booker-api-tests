@@ -1,6 +1,6 @@
 import { test, expect } from '../fixtures/base';
 
-test('DELETE drops the record and leaves a 404 footprint', async ({ request, bookingContext }) => {
+test('DELETE removes the booking',{tag:'@regression'} ,async ({ request, bookingContext }) => {
     // 1. Create a transient booking
     const createResponse = await request.post('/booking', {
         data: {

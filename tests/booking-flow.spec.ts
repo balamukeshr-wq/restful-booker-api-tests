@@ -1,6 +1,6 @@
 import { test, expect } from '../fixtures/base';
 
-test('As a travel agent, I can manage a customer booking lifecycle from creation to cancellation', async ({ request, bookingContext }) => {
+test('booking lifecycle: create, read, update, delete',{tag:'@regression'}, async ({ request, bookingContext }) => {
     let activeId: number;
 
     // Step 1: Create
