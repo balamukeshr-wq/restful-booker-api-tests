@@ -21,7 +21,7 @@ test.describe('Booking Update Operations', () => {
         bookingContext.trackID(bookingId); // Track for auto-cleanup
     });
 
-    test('PUT replaces the complete booking record', async ({ request, bookingContext }) => {
+    test('PUT replaces the booking',{tag:'@regression'}, async ({ request, bookingContext }) => {
         const updatedPayload = {
             firstname: 'Jane',
             lastname: 'Smith',
@@ -44,7 +44,7 @@ test.describe('Booking Update Operations', () => {
         expect(getBody).toEqual(updatedPayload);
     });
 
-    test('PATCH updates only the specified field', async ({ request, bookingContext }) => {
+    test('PATCH updates only the specified field',{tag:'@regression'}, async ({ request, bookingContext }) => {
         // Modify exactly one field
         const patchPayload = { firstname: 'Robert' };
 

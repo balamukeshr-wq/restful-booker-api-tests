@@ -1,7 +1,7 @@
 import { test, expect } from '../fixtures/base';
 import { buildBooking } from '../data/bookingData';
 
-test.describe('Create Booking Integration Suite', () => {
+test.describe('Create Booking', () => {
     const createdIds: number[] = [];
 
     // Manual cleanup step for Day 4 to remove generated records
@@ -12,7 +12,7 @@ test.describe('Create Booking Integration Suite', () => {
         createdIds.length = 0;
     });
 
-    test('POST /booking should successfully instantiate a new reservation record', { tag: '@smoke' }, async ({ bookingClient }) => {
+    test('POST /booking creates booking', { tag: '@smoke' }, async ({ bookingClient }) => {
         const payload = buildBooking();
 
         // Action - Send the creation request
