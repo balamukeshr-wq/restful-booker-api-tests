@@ -15,10 +15,10 @@ API test automation for the public [Restful-Booker](https://restful-booker.herok
 | Update | `PUT` replaces the whole booking; `PATCH` changes only the field sent |
 | Delete | `DELETE` removes the booking and a later `GET` returns 404 |
 | Lifecycle | One test walks create, read, update, delete and verify-gone |
-| Negative cases | Requests without a token are rejected with 403; unknown ids return 404; an incomplete payload is rejected |
+| Negative cases | Requests without a token are rejected with 403; unknown ids return 404; an incomplete payload is rejected | Requests with a missing or invalid token are rejected with 403 (PUT, DELETE); unknown ids return 404; an incomplete payload is rejected|
 | Response checks | Create and read responses are JSON |
 
-**14 tests.** Tests tagged `@smoke` are the fast core; `@regression` covers the rest.
+**15 tests.** Tests tagged `@smoke` are the fast core; `@regression` covers the rest.
 
 ## Run it
 
