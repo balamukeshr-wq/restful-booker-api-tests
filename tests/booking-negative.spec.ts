@@ -27,4 +27,12 @@ test.describe('Negative cases', () => {
         const res = await request.post('/booking', { data: incomplete });
         expect(res.status()).toBe(500); // replace with what Postman showed
     });
+    test('DELETE with an invalid token is rejected', { tag: '@regression' }, async ({ request, bookingClient, trackBooking }) => {
+        const { bookingid } = await (await bookingClient.createBooking(buildBooking())).json();
+        trackBooking(bookingid);
+        const res = await request.delete(`/booking/${bookingid}`, {
+            headers: { Cookie: 'token=invalid-token' },
+        });
+        expect(res.status()).toBe(403); // confirm in Postman first
+    });
 });
