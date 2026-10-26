@@ -1,6 +1,6 @@
 import { test, expect } from "../fixtures/base";
 
-test.describe('Authentication Tests via Client Wrapper', () => {
+test.describe('Authentication', () => {
 
   test('Valid login returns a token', { tag: '@smoke' }, async ({ bookingClient }) => {
     const response = await bookingClient.getToken('admin', 'password123');

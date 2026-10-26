@@ -12,7 +12,7 @@ test.describe('Create Booking', () => {
         createdIds.length = 0;
     });
 
-    test('POST /booking creates booking', { tag: '@smoke' }, async ({ bookingClient }) => {
+    test('POST /booking creates a booking', { tag: '@smoke' }, async ({ bookingClient }) => {
         const payload = buildBooking();
 
         // Action - Send the creation request

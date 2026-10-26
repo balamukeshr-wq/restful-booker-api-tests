@@ -1,7 +1,7 @@
 import { test, expect } from '../fixtures/base';
 import { buildBooking } from '../data/bookingData';
 
-test.describe('Read Booking Integration Suite', () => {
+test.describe('Read Booking ', () => {
     const createdIds: number[] = [];
 
     test.afterEach(async ({ bookingClient}) => {

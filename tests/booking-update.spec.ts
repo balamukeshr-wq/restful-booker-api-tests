@@ -1,7 +1,7 @@
 import { test } from '../fixtures/base';
 import { expect } from '@playwright/test';
 
-test.describe('Booking Update Operations', () => {
+test.describe('Update Booking', () => {
     let bookingId: number;
 
     test.beforeEach(async ({ request, bookingContext }) => {
