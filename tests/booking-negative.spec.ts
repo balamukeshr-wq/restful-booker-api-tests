@@ -10,6 +10,19 @@ test.describe('Negative cases', () => {
         expect(res.status()).toBe(403);
     });
 
+    test('PUT with an invalid token is rejected', { tag: '@regression' }, async ({ request, bookingClient, trackBooking }) => {
+        const { bookingid } = await (await bookingClient.createBooking(buildBooking())).json();
+        trackBooking(bookingid);
+
+        const res = await request.put(`/booking/${bookingid}`, {
+            headers: { Cookie: 'token=invalid-token-123' },
+            data: buildBooking()
+        });
+
+        expect(res.status()).toBe(403);
+    });
+
+
     test('DELETE without a token is rejected and the booking survives', { tag: '@regression' }, async ({ request, bookingClient, trackBooking }) => {
         const { bookingid } = await (await bookingClient.createBooking(buildBooking())).json();
         trackBooking(bookingid);
